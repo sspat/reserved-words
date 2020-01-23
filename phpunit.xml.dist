@@ -4,6 +4,7 @@
          colors="true"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
+         bootstrap="./tests/bootstrap.php"
 >
     <testsuites>
         <testsuite name="Sspat ReservedWords Test Suite">

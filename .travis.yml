@@ -2,37 +2,32 @@ dist: trusty
 sudo: false
 language: php
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+
 php:
   - 7.2
   - 7.3
   - 7.4
+  - nightly
 
-before_install:
-  - composer self-update
+install:
+  - travis_retry composer self-update
+  - travis_retry composer install --prefer-dist
+
+script: ./vendor/bin/phpunit
 
 jobs:
+  allow_failures:
+    - php: nightly
   include:
     - stage: Psalm
       php: 7.4
-      install: travis_retry composer install --prefer-dist
       script:
-        - vendor/bin/psalm
-
-    - stage: Test
-      install: travis_retry composer install --prefer-dist
-      php:
-        - 7.2
-        - 7.3
-        - 7.4
-      script:
-        - ./vendor/bin/phpunit
+        - ./vendor/bin/psalm
 
     - stage: Code Style
       php: 7.4
-      install: travis_retry composer install --prefer-dist
       script:
-        - vendor/bin/phpcs
-
-cache:
-  directories:
-    - $HOME/.composer/cache
+        - ./vendor/bin/phpcs
