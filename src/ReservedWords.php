@@ -45,7 +45,7 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a constant name
      */
-    public function cannotUseAsConstantName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedConstantName(string $string, ?string $phpVersion = null) : bool
     {
         return $this->isReservedAs($string, 'constant', $phpVersion);
     }
@@ -53,7 +53,7 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a namespace part or class/interface/trait name
      */
-    public function cannotUseAsNamespaceName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedNamespaceName(string $string, ?string $phpVersion = null) : bool
     {
         return $this->isReservedAs($string, 'namespace', $phpVersion);
     }
@@ -61,7 +61,7 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a function name
      */
-    public function cannotUseAsFunctionName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedFunctionName(string $string, ?string $phpVersion = null) : bool
     {
         return $this->isReservedAs($string, 'function', $phpVersion);
     }
@@ -69,7 +69,7 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a method name
      */
-    public function cannotUseAsMethodName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedMethodName(string $string, ?string $phpVersion = null) : bool
     {
         return $this->isReservedAs($string, 'method', $phpVersion);
     }

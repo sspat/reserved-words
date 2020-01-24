@@ -45,25 +45,25 @@ $isReserved = $reservedWords->isReserved($word);
 /**
  * Checks that the word cannot be used as a constant name in your current php version.
  */
-$cannotUseAsConstantName = $reservedWords->cannotUseAsConstantName($word);
+$cannotUseAsConstantName = $reservedWords->isReservedConstantName($word);
 /**
  * Checks that the word cannot be used as a namespace part or class/interface/trait name in your current php version.
  */
-$cannotUseAsNamespaceName = $reservedWords->cannotUseAsNamespaceName($word);
+$cannotUseAsNamespaceName = $reservedWords->isReservedNamespaceName($word);
 /**
  * Checks that the word cannot be used as a function name in your current php version.
  */
-$cannotUseAsFunctionName = $reservedWords->cannotUseAsFunctionName($word);
+$cannotUseAsFunctionName = $reservedWords->isReservedFunctionName($word);
 /**
  * Checks that the word cannot be used as a method name in your current php version.
  */
-$cannotUseAsMethodName = $reservedWords->cannotUseAsMethodName($word);
+$cannotUseAsMethodName = $reservedWords->isReservedMethodName($word);
 
 /**
  * The following methods also accept a second parameter, to check against a PHP version different than your current runtime
  */
-$cannotUseAsConstantName = $reservedWords->cannotUseAsConstantName($word, '5.6');
-$cannotUseAsNamespaceName = $reservedWords->cannotUseAsNamespaceName($word, '5.6.1');
-$cannotUseAsFunctionName = $reservedWords->cannotUseAsFunctionName($word, '7.0');
-$cannotUseAsMethodName = $reservedWords->cannotUseAsMethodName($word, '7.4.2');
+$cannotUseAsConstantName = $reservedWords->isReservedConstantName($word, '5.6');
+$cannotUseAsNamespaceName = $reservedWords->isReservedNamespaceName($word, '5.6.1');
+$cannotUseAsFunctionName = $reservedWords->isReservedFunctionName($word, '7.0');
+$cannotUseAsMethodName = $reservedWords->isReservedMethodName($word, '7.4.2');
 ```

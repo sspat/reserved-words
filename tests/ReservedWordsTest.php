@@ -49,7 +49,7 @@ class ReservedWordsTest extends TestCase
     ) : void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
-        $this->assertEquals($isReserved, $reservedWords->cannotUseAsConstantName($reservedWord, $phpVersion));
+        $this->assertEquals($isReserved, $reservedWords->isReservedConstantName($reservedWord, $phpVersion));
     }
 
     /**
@@ -65,7 +65,7 @@ class ReservedWordsTest extends TestCase
     ) : void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
-        $this->assertEquals($isReserved, $reservedWords->cannotUseAsNamespaceName($reservedWord, $phpVersion));
+        $this->assertEquals($isReserved, $reservedWords->isReservedNamespaceName($reservedWord, $phpVersion));
     }
 
     /**
@@ -81,7 +81,7 @@ class ReservedWordsTest extends TestCase
     ) : void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
-        $this->assertEquals($isReserved, $reservedWords->cannotUseAsFunctionName($reservedWord, $phpVersion));
+        $this->assertEquals($isReserved, $reservedWords->isReservedFunctionName($reservedWord, $phpVersion));
     }
 
     /**
@@ -97,7 +97,7 @@ class ReservedWordsTest extends TestCase
     ) : void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
-        $this->assertEquals($isReserved, $reservedWords->cannotUseAsMethodName($reservedWord, $phpVersion));
+        $this->assertEquals($isReserved, $reservedWords->isReservedMethodName($reservedWord, $phpVersion));
     }
 
     /**
