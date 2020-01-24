@@ -1,6 +1,6 @@
 # Php Reserved Words checker
 
-[![Latest Version](https://img.shields.io/github/release/sspat/reserved-words.svg?style=flat-square)](https://github.com/sspat/reserved-words/releases)
+[![Latest Version](https://img.shields.io/github/v/release/sspat/reserved-words)](https://github.com/sspat/reserved-words/releases)
 [![Build](https://img.shields.io/travis/sspat/reserved-words/master)](https://travis-ci.org/sspat/reserved-words)
 [![License](https://img.shields.io/github/license/sspat/reserved-words)](https://github.com/sspat/reserved-words/blob/master/LICENSE)
 [![Email](https://img.shields.io/badge/email-studio22@mail.ru-blue.svg?style=flat-square)](mailto:studio22@mail.ru)
