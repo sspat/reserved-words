@@ -1,55 +1,14 @@
 <?xml version="1.0"?>
 <psalm
-    totallyTyped="true"
-    resolveFromConfigFile="true"
-    useDocblockTypes="true"
-    requireVoidReturnType="true"
-    allowPhpStormGenerics="true"
-    ignoreInternalFunctionFalseReturn="false"
-    ignoreInternalFunctionNullReturn="false"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns="https://getpsalm.org/schema/config"
-    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+        xmlns="https://getpsalm.org/schema/config"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+        allowPhpStormGenerics="true"
+        strictBinaryOperands="true"
+        findUnusedVariablesAndParams="true"
+        ensureArrayStringOffsetsExist="true"
 >
     <projectFiles>
         <directory name="src" />
     </projectFiles>
-
-    <issueHandlers>
-        <LessSpecificReturnType errorLevel="error" />
-
-        <DeprecatedMethod errorLevel="error" />
-        <DeprecatedProperty errorLevel="error" />
-        <DeprecatedClass errorLevel="error" />
-        <DeprecatedConstant errorLevel="error" />
-        <DeprecatedFunction errorLevel="error" />
-        <DeprecatedInterface errorLevel="error" />
-        <DeprecatedTrait errorLevel="error" />
-
-        <InternalMethod errorLevel="error" />
-        <InternalProperty errorLevel="error" />
-        <InternalClass errorLevel="error" />
-
-        <MissingClosureReturnType errorLevel="error" />
-        <MissingReturnType errorLevel="error" />
-        <MissingPropertyType errorLevel="error" />
-        <InvalidDocblock errorLevel="error" />
-        <MisplacedRequiredParam errorLevel="error" />
-
-        <PropertyNotSetInConstructor errorLevel="error" />
-        <MissingConstructor errorLevel="error" />
-        <MissingClosureParamType errorLevel="error" />
-        <MissingParamType errorLevel="error" />
-
-        <RedundantCondition errorLevel="error" />
-
-        <DocblockTypeContradiction errorLevel="error" />
-        <RedundantConditionGivenDocblockType errorLevel="error" />
-
-        <UnresolvableInclude errorLevel="error" />
-
-        <RawObjectIteration errorLevel="error" />
-
-        <InvalidStringClass errorLevel="error" />
-    </issueHandlers>
 </psalm>
