@@ -11,11 +11,11 @@
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true" >
-            <directory suffix=".php">./src/</directory>
-        </whitelist>
-    </filter>
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </coverage>
     <php>
         <ini name="error_reporting" value="E_ALL"/>
         <env name="APP_ENV" value="test" />
