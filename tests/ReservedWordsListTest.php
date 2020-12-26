@@ -16,7 +16,10 @@ use function is_string;
 use function Safe\preg_match;
 use function Safe\sprintf;
 
-class ReservedWordsListTest extends TestCase
+/**
+ * @covers \sspat\ReservedWords\ReservedWordsList
+ */
+final class ReservedWordsListTest extends TestCase
 {
     public function testReservedWordsList(): void
     {
