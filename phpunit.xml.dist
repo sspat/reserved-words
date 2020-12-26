@@ -7,14 +7,18 @@
          bootstrap="./tests/bootstrap.php"
 >
     <testsuites>
-        <testsuite name="Sspat ReservedWords Test Suite">
+        <testsuite name="unit">
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
-
-    <filter>
-        <whitelist>
-            <directory>./src/</directory>
-        </whitelist>
-    </filter>
+    <coverage processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+    </coverage>
+    <php>
+        <ini name="error_reporting" value="E_ALL"/>
+        <env name="APP_ENV" value="test" />
+        <env name="APP_DEBUG" value="false" />
+    </php>
 </phpunit>

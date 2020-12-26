@@ -9,11 +9,11 @@ use function count;
 use function is_array;
 use function is_string;
 use function phpversion;
-use function preg_match;
+use function Safe\preg_match;
 use function strtolower;
 use function version_compare;
 
-class ReservedWords
+final class ReservedWords
 {
     public const PHP_VERSION_REGEXP = '/^\d\.\d\.?\d*$/';
 
@@ -37,7 +37,7 @@ class ReservedWords
      * This method also returns true for words that are marked as "soft" reserved in the PHP docs and may
      * become reserved in future versions of the language.
      */
-    public function isReserved(string $string) : bool
+    public function isReserved(string $string): bool
     {
         return array_key_exists(strtolower($string), $this->reservedWords);
     }
@@ -45,23 +45,31 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a constant name
      */
-    public function isReservedConstantName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedConstantName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'constant', $phpVersion);
     }
 
     /**
-     * Checks that the word cannot be used as a namespace part or class/interface/trait name
+     * Checks that the word cannot be used as a namespace part
      */
-    public function isReservedNamespaceName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedNamespaceName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'namespace', $phpVersion);
     }
 
     /**
+     * Checks that the word cannot be used as a class/interface/trait name
+     */
+    public function isReservedClassName(string $string, ?string $phpVersion = null): bool
+    {
+        return $this->isReservedAs($string, 'class', $phpVersion);
+    }
+
+    /**
      * Checks that the word cannot be used as a function name
      */
-    public function isReservedFunctionName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedFunctionName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'function', $phpVersion);
     }
@@ -69,12 +77,12 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a method name
      */
-    public function isReservedMethodName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedMethodName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'method', $phpVersion);
     }
 
-    private function isReservedAs(string $string, string $checkKey, ?string $phpVersion = null) : bool
+    private function isReservedAs(string $string, string $checkKey, ?string $phpVersion = null): bool
     {
         if (! $this->isReserved($string)) {
             return false;
@@ -82,10 +90,6 @@ class ReservedWords
 
         $targetPhpVersion = $this->getPhpVersion($phpVersion);
         $reservedVersion  = $this->reservedWords[strtolower($string)][$checkKey];
-
-        if ($reservedVersion === false) {
-            return false;
-        }
 
         if (is_string($reservedVersion)) {
             return $this->firstVersionEqualsOrHigherThanSecond($targetPhpVersion, $reservedVersion);
@@ -101,23 +105,26 @@ class ReservedWords
         return false;
     }
 
-    private function firstVersionEqualsOrHigherThanSecond(string $firstVersion, string $secondVersion) : bool
+    private function firstVersionEqualsOrHigherThanSecond(string $firstVersion, string $secondVersion): bool
     {
         return version_compare($firstVersion, $secondVersion) >= 0;
     }
 
-    private function firstVersionLessThanSecond(string $firstVersion, string $secondVersion) : bool
+    private function firstVersionLessThanSecond(string $firstVersion, string $secondVersion): bool
     {
         return version_compare($firstVersion, $secondVersion) === -1;
     }
 
-    private function getPhpVersion(?string $phpVersion = null) : string
+    private function getPhpVersion(?string $phpVersion = null): string
     {
         if ($phpVersion === null) {
-            return (string) phpversion();
+            /** @var string $version */
+            $version = phpversion();
+
+            return $version;
         }
 
-        if (preg_match(self::PHP_VERSION_REGEXP, $phpVersion)) {
+        if (preg_match(self::PHP_VERSION_REGEXP, $phpVersion) === 1) {
             return $phpVersion;
         }
 

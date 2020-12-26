@@ -1,0 +1,21 @@
+{
+  "source": {
+    "directories": [
+      "src"
+    ]
+  },
+  "timeout": 3,
+  "logs": {
+    "text": "php://stderr",
+    "badge": {
+      "branch": "master"
+    }
+  },
+  "mutators": {
+    "@default": true,
+    "IdenticalEqual": false,
+    "NotIdenticalNotEqual": false
+  },
+  "minMsi": 100,
+  "minCoveredMsi": 100
+}

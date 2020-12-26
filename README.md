@@ -2,8 +2,10 @@
 
 [![Latest Version](https://img.shields.io/github/v/release/sspat/reserved-words)](https://github.com/sspat/reserved-words/releases)
 [![Build](https://img.shields.io/travis/sspat/reserved-words/master)](https://travis-ci.org/sspat/reserved-words)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fsspat%2Freserved-words%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/sspat/reserved-words/master)
+[![Test Coverage](https://coveralls.io/repos/github/sspat/reserved-words/badge.svg?branch=master)](https://coveralls.io/github/sspat/reserved-words?branch=master)
+[![Type Coverage](https://shepherd.dev/github/sspat/reserved-words/coverage.svg)](https://shepherd.dev/github/sspat/reserved-words)
 [![License](https://img.shields.io/github/license/sspat/reserved-words)](https://github.com/sspat/reserved-words/blob/master/LICENSE)
-[![Email](https://img.shields.io/badge/email-studio22@mail.ru-blue.svg?style=flat-square)](mailto:studio22@mail.ru)
 
 ## About
 
@@ -47,9 +49,17 @@ $isReserved = $reservedWords->isReserved($word);
  */
 $cannotUseAsConstantName = $reservedWords->isReservedConstantName($word);
 /**
- * Checks that the word cannot be used as a namespace part or class/interface/trait name in your current php version.
+ * Checks that the word cannot be used as a namespace part in your current php version.
+ * 
+ * This is used for checking parts of namespaces, not full namespace strings.
+ * E.g. calling this with `Some\Namespace\String` is incorrect, you should make three separate calls
+ * with `Some`, `Namespace` and `String`.
  */
 $cannotUseAsNamespaceName = $reservedWords->isReservedNamespaceName($word);
+/**
+ * Checks that the word cannot be used as a class/interface/trait name in your current php version.
+ */
+$cannotUseAsNamespaceName = $reservedWords->isReservedClassName($word);
 /**
  * Checks that the word cannot be used as a function name in your current php version.
  */
@@ -64,6 +74,7 @@ $cannotUseAsMethodName = $reservedWords->isReservedMethodName($word);
  */
 $cannotUseAsConstantName = $reservedWords->isReservedConstantName($word, '5.6');
 $cannotUseAsNamespaceName = $reservedWords->isReservedNamespaceName($word, '5.6.1');
-$cannotUseAsFunctionName = $reservedWords->isReservedFunctionName($word, '7.0');
+$cannotUseAsNamespaceName = $reservedWords->isReservedClassName($word, '5.6.1');
+$cannotUseAsFunctionName = $reservedWords->isReservedFunctionName($word, '8.0');
 $cannotUseAsMethodName = $reservedWords->isReservedMethodName($word, '7.4.2');
 ```
