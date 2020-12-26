@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace sspat\ReservedWords\Tests;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use sspat\ReservedWords\ReservedWords;
 
@@ -16,7 +17,7 @@ class ReservedWordsTest extends TestCase
         $reservedWord  = 'list';
         $reservedWords = new ReservedWords();
 
-        $this->assertTrue($reservedWords->isReserved($reservedWord));
+        Assert::assertTrue($reservedWords->isReserved($reservedWord));
     }
 
     public function testIsReserved(): void
@@ -25,8 +26,8 @@ class ReservedWordsTest extends TestCase
         $notReservedWord = 'not-reserved-word';
         $reservedWords   = new ReservedWords([$reservedWord => []]);
 
-        $this->assertTrue($reservedWords->isReserved($reservedWord));
-        $this->assertFalse($reservedWords->isReserved($notReservedWord));
+        Assert::assertTrue($reservedWords->isReserved($reservedWord));
+        Assert::assertFalse($reservedWords->isReserved($notReservedWord));
     }
 
     public function testIsReservedCaseInsensitive(): void
@@ -34,7 +35,7 @@ class ReservedWordsTest extends TestCase
         $reservedWord  = 'reserved-word';
         $reservedWords = new ReservedWords([$reservedWord => []]);
 
-        $this->assertTrue($reservedWords->isReserved(strtoupper($reservedWord)));
+        Assert::assertTrue($reservedWords->isReserved(strtoupper($reservedWord)));
     }
 
     /**
@@ -50,7 +51,7 @@ class ReservedWordsTest extends TestCase
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
-        $this->assertEquals($isReserved, $reservedWords->isReservedConstantName($reservedWord, $phpVersion));
+        Assert::assertEquals($isReserved, $reservedWords->isReservedConstantName($reservedWord, $phpVersion));
     }
 
     /**
@@ -66,7 +67,7 @@ class ReservedWordsTest extends TestCase
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
-        $this->assertEquals($isReserved, $reservedWords->isReservedNamespaceName($reservedWord, $phpVersion));
+        Assert::assertEquals($isReserved, $reservedWords->isReservedNamespaceName($reservedWord, $phpVersion));
     }
 
     /**
@@ -82,7 +83,7 @@ class ReservedWordsTest extends TestCase
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
-        $this->assertEquals($isReserved, $reservedWords->isReservedFunctionName($reservedWord, $phpVersion));
+        Assert::assertEquals($isReserved, $reservedWords->isReservedFunctionName($reservedWord, $phpVersion));
     }
 
     /**
@@ -98,7 +99,7 @@ class ReservedWordsTest extends TestCase
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
-        $this->assertEquals($isReserved, $reservedWords->isReservedMethodName($reservedWord, $phpVersion));
+        Assert::assertEquals($isReserved, $reservedWords->isReservedMethodName($reservedWord, $phpVersion));
     }
 
     /**

@@ -6,7 +6,7 @@ namespace sspat\ReservedWords;
 
 use RuntimeException;
 
-use function sprintf;
+use function Safe\sprintf;
 
 class ReservedWordsLookupError extends RuntimeException
 {
