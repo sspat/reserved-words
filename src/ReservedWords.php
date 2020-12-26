@@ -9,7 +9,7 @@ use function count;
 use function is_array;
 use function is_string;
 use function phpversion;
-use function preg_match;
+use function Safe\preg_match;
 use function strtolower;
 use function version_compare;
 
@@ -117,7 +117,7 @@ class ReservedWords
             return (string) phpversion();
         }
 
-        if (preg_match(self::PHP_VERSION_REGEXP, $phpVersion)) {
+        if (preg_match(self::PHP_VERSION_REGEXP, $phpVersion) === 1) {
             return $phpVersion;
         }
 

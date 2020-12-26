@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace sspat\ReservedWords\Tests;
 
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use sspat\ReservedWords\ReservedWords;
 use sspat\ReservedWords\ReservedWordsList;
@@ -12,8 +13,8 @@ use function array_keys;
 use function count;
 use function is_array;
 use function is_string;
-use function preg_match;
-use function sprintf;
+use function Safe\preg_match;
+use function Safe\sprintf;
 
 class ReservedWordsListTest extends TestCase
 {
@@ -22,26 +23,26 @@ class ReservedWordsListTest extends TestCase
         $errorMessage = 'Invalid reserved word configuration for %s';
 
         foreach (ReservedWordsList::PHP_RESERVED_WORDS as $reservedWord => $reservedWordConfig) {
-            $this->assertIsString($reservedWord);
-            $this->assertIsArray($reservedWordConfig);
-            $this->assertCount(4, $reservedWordConfig);
-            $this->assertArrayHasKey('constant', $reservedWordConfig);
-            $this->assertArrayHasKey('namespace', $reservedWordConfig);
-            $this->assertArrayHasKey('function', $reservedWordConfig);
-            $this->assertArrayHasKey('method', $reservedWordConfig);
-            $this->assertTrue(
+            Assert::assertIsString($reservedWord);
+            Assert::assertIsArray($reservedWordConfig);
+            Assert::assertCount(4, $reservedWordConfig);
+            Assert::assertArrayHasKey('constant', $reservedWordConfig);
+            Assert::assertArrayHasKey('namespace', $reservedWordConfig);
+            Assert::assertArrayHasKey('function', $reservedWordConfig);
+            Assert::assertArrayHasKey('method', $reservedWordConfig);
+            Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['constant']),
                 sprintf($errorMessage, $reservedWord)
             );
-            $this->assertTrue(
+            Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['namespace']),
                 sprintf($errorMessage, $reservedWord)
             );
-            $this->assertTrue(
+            Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['function']),
                 sprintf($errorMessage, $reservedWord)
             );
-            $this->assertTrue(
+            Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['method']),
                 sprintf($errorMessage, $reservedWord)
             );
@@ -54,13 +55,13 @@ class ReservedWordsListTest extends TestCase
     private function isValidConstraint($constraint): bool
     {
         return $constraint === false ||
-               (is_string($constraint) && preg_match(ReservedWords::PHP_VERSION_REGEXP, $constraint)) ||
+               (is_string($constraint) && preg_match(ReservedWords::PHP_VERSION_REGEXP, $constraint) === 1) ||
                (
                    is_array($constraint) &&
                    count($constraint) === 2 &&
                    array_keys($constraint) === [0, 1] &&
-                   preg_match(ReservedWords::PHP_VERSION_REGEXP, $constraint[0]) &&
-                   preg_match(ReservedWords::PHP_VERSION_REGEXP, $constraint[1])
+                   preg_match(ReservedWords::PHP_VERSION_REGEXP, $constraint[0]) === 1 &&
+                   preg_match(ReservedWords::PHP_VERSION_REGEXP, $constraint[1]) === 1
                );
     }
 }
