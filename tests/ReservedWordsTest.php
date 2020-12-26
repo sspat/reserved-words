@@ -92,6 +92,22 @@ final class ReservedWordsTest extends TestCase
      *
      * @dataProvider reservedWordsList
      */
+    public function testClassName(
+        string $reservedWord,
+        array $reservedWordParameters,
+        string $phpVersion,
+        bool $isReserved
+    ): void {
+        $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
+
+        Assert::assertEquals($isReserved, $reservedWords->isReservedClassName($reservedWord, $phpVersion));
+    }
+
+    /**
+     * @param array<string, string|bool|array<array-key, string>> $reservedWordParameters
+     *
+     * @dataProvider reservedWordsList
+     */
     public function testFunctionName(
         string $reservedWord,
         array $reservedWordParameters,
@@ -140,6 +156,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => false,
                     'namespace' => false,
+                    'class' => false,
                     'function' => false,
                     'method' => false,
                 ],
@@ -151,6 +168,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => '7.0',
                     'namespace' => '7.0',
+                    'class' => '7.0',
                     'function' => '7.0',
                     'method' => '7.0',
                 ],
@@ -162,6 +180,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => '7.0',
                     'namespace' => '7.0',
+                    'class' => '7.0',
                     'function' => '7.0',
                     'method' => '7.0',
                 ],
@@ -173,6 +192,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => '7.0',
                     'namespace' => '7.0',
+                    'class' => '7.0',
                     'function' => '7.0',
                     'method' => '7.0',
                 ],
@@ -184,6 +204,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => '7.0',
                     'namespace' => '7.0',
+                    'class' => '7.0',
                     'function' => '7.0',
                     'method' => '7.0',
                 ],
@@ -195,6 +216,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => ['5.0', '7.0'],
                     'namespace' => ['5.0', '7.0'],
+                    'class' => ['5.0', '7.0'],
                     'function' => ['5.0', '7.0'],
                     'method' => ['5.0', '7.0'],
                 ],
@@ -206,6 +228,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => ['5.0', '7.0'],
                     'namespace' => ['5.0', '7.0'],
+                    'class' => ['5.0', '7.0'],
                     'function' => ['5.0', '7.0'],
                     'method' => ['5.0', '7.0'],
                 ],
@@ -217,6 +240,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => ['5.0', '7.0'],
                     'namespace' => ['5.0', '7.0'],
+                    'class' => ['5.0', '7.0'],
                     'function' => ['5.0', '7.0'],
                     'method' => ['5.0', '7.0'],
                 ],
@@ -228,6 +252,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => ['5.0', '7.0'],
                     'namespace' => ['5.0', '7.0'],
+                    'class' => ['5.0', '7.0'],
                     'function' => ['5.0', '7.0'],
                     'method' => ['5.0', '7.0'],
                 ],
@@ -239,6 +264,7 @@ final class ReservedWordsTest extends TestCase
                 'reservedWordParameters' => [
                     'constant' => ['5.0', '7.0'],
                     'namespace' => ['5.0', '7.0'],
+                    'class' => ['5.0', '7.0'],
                     'function' => ['5.0', '7.0'],
                     'method' => ['5.0', '7.0'],
                 ],

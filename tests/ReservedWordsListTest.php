@@ -28,9 +28,10 @@ final class ReservedWordsListTest extends TestCase
         foreach (ReservedWordsList::PHP_RESERVED_WORDS as $reservedWord => $reservedWordConfig) {
             Assert::assertIsString($reservedWord);
             Assert::assertIsArray($reservedWordConfig);
-            Assert::assertCount(4, $reservedWordConfig);
+            Assert::assertCount(5, $reservedWordConfig);
             Assert::assertArrayHasKey('constant', $reservedWordConfig);
             Assert::assertArrayHasKey('namespace', $reservedWordConfig);
+            Assert::assertArrayHasKey('class', $reservedWordConfig);
             Assert::assertArrayHasKey('function', $reservedWordConfig);
             Assert::assertArrayHasKey('method', $reservedWordConfig);
             Assert::assertTrue(
@@ -39,6 +40,10 @@ final class ReservedWordsListTest extends TestCase
             );
             Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['namespace']),
+                sprintf($errorMessage, $reservedWord)
+            );
+            Assert::assertTrue(
+                $this->isValidConstraint($reservedWordConfig['class']),
                 sprintf($errorMessage, $reservedWord)
             );
             Assert::assertTrue(
