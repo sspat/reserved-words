@@ -8,7 +8,7 @@ use RuntimeException;
 
 use function Safe\sprintf;
 
-class ReservedWordsLookupError extends RuntimeException
+final class ReservedWordsLookupError extends RuntimeException
 {
     public static function invalidPhpVersion(string $phpVersion, string $correctFormat): self
     {

@@ -13,7 +13,7 @@ use function Safe\preg_match;
 use function strtolower;
 use function version_compare;
 
-class ReservedWords
+final class ReservedWords
 {
     public const PHP_VERSION_REGEXP = '/^\d\.\d\.?\d*$/';
 
@@ -83,10 +83,6 @@ class ReservedWords
         $targetPhpVersion = $this->getPhpVersion($phpVersion);
         $reservedVersion  = $this->reservedWords[strtolower($string)][$checkKey];
 
-        if ($reservedVersion === false) {
-            return false;
-        }
-
         if (is_string($reservedVersion)) {
             return $this->firstVersionEqualsOrHigherThanSecond($targetPhpVersion, $reservedVersion);
         }
@@ -114,7 +110,10 @@ class ReservedWords
     private function getPhpVersion(?string $phpVersion = null): string
     {
         if ($phpVersion === null) {
-            return (string) phpversion();
+            /** @var string $version */
+            $version = phpversion();
+
+            return $version;
         }
 
         if (preg_match(self::PHP_VERSION_REGEXP, $phpVersion) === 1) {

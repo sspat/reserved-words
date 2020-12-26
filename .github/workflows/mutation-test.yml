@@ -1,25 +1,21 @@
-name: "PHPUnit tests"
+name: "Mutation tests"
 on:
   pull_request:
   push:
     branches:
       - "master"
 jobs:
-  phpunit:
-    name: "PHPUnit tests"
+  mutation-tests:
+    name: "Mutation tests"
     runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
         dependencies:
-          - "lowest"
-          - "highest"
           - "locked"
         php-version:
-          - "7.3"
           - "7.4"
         operating-system:
           - "ubuntu-latest"
-          - "windows-latest"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
@@ -46,5 +42,8 @@ jobs:
       - name: "Install locked dependencies"
         if: ${{ matrix.dependencies == 'locked' }}
         run: "composer install --no-interaction --no-progress --no-suggest"
-      - name: "Tests"
-        run: "vendor/bin/phpunit --fail-on-warning"
+      - name: "Infection"
+        run: "vendor/bin/infection"
+        env:
+          INFECTION_BADGE_API_KEY: ${{ secrets.INFECTION_BADGE_API_KEY }}
+          STRYKER_DASHBOARD_API_KEY: ${{ secrets.STRYKER_DASHBOARD_API_KEY }}

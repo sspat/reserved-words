@@ -7,10 +7,14 @@ namespace sspat\ReservedWords\Tests;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use sspat\ReservedWords\ReservedWords;
+use sspat\ReservedWords\ReservedWordsLookupError;
 
 use function strtoupper;
 
-class ReservedWordsTest extends TestCase
+/**
+ * @covers \sspat\ReservedWords\ReservedWords
+ */
+final class ReservedWordsTest extends TestCase
 {
     public function testDefaultReservedWordsLoaded(): void
     {
@@ -22,20 +26,33 @@ class ReservedWordsTest extends TestCase
 
     public function testIsReserved(): void
     {
-        $reservedWord    = 'reserved-word';
-        $notReservedWord = 'not-reserved-word';
-        $reservedWords   = new ReservedWords([$reservedWord => []]);
+        $reservedWord  = 'reserved-word';
+        $reservedWords = new ReservedWords([$reservedWord => []]);
 
         Assert::assertTrue($reservedWords->isReserved($reservedWord));
-        Assert::assertFalse($reservedWords->isReserved($notReservedWord));
+    }
+
+    public function testIsNotReserved(): void
+    {
+        $notReservedWord = 'not-reserved-word';
+        $reservedWords   = new ReservedWords([]);
+
+        Assert::assertFalse($reservedWords->isReservedMethodName($notReservedWord));
     }
 
     public function testIsReservedCaseInsensitive(): void
     {
         $reservedWord  = 'reserved-word';
-        $reservedWords = new ReservedWords([$reservedWord => []]);
+        $reservedWords = new ReservedWords([
+            $reservedWord => [
+                'constant' => '7.0',
+                'namespace' => '7.0',
+                'function' => '7.0',
+                'method' => '7.0',
+            ],
+        ]);
 
-        Assert::assertTrue($reservedWords->isReserved(strtoupper($reservedWord)));
+        Assert::assertTrue($reservedWords->isReservedMethodName(strtoupper($reservedWord), '7.0'));
     }
 
     /**
@@ -100,6 +117,16 @@ class ReservedWordsTest extends TestCase
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
 
         Assert::assertEquals($isReserved, $reservedWords->isReservedMethodName($reservedWord, $phpVersion));
+    }
+
+    public function testInvalidPhpVersion(): void
+    {
+        $reservedWord  = 'reserved-word';
+        $reservedWords = new ReservedWords([$reservedWord => []]);
+
+        $this->expectException(ReservedWordsLookupError::class);
+        $this->expectErrorMessage('Invalid PHP version: 7, the correct format is: /^\d\.\d\.?\d*$/');
+        $reservedWords->isReservedMethodName($reservedWord, '7');
     }
 
     /**

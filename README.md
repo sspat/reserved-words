@@ -2,10 +2,10 @@
 
 [![Latest Version](https://img.shields.io/github/v/release/sspat/reserved-words)](https://github.com/sspat/reserved-words/releases)
 [![Build](https://img.shields.io/travis/sspat/reserved-words/master)](https://travis-ci.org/sspat/reserved-words)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fsspat%2Freserved-words%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/sspat/reserved-words/master)
 [![Test Coverage](https://coveralls.io/repos/github/sspat/reserved-words/badge.svg?branch=master)](https://coveralls.io/github/sspat/reserved-words?branch=master)
 [![Type Coverage](https://shepherd.dev/github/sspat/reserved-words/coverage.svg)](https://shepherd.dev/github/sspat/reserved-words)
 [![License](https://img.shields.io/github/license/sspat/reserved-words)](https://github.com/sspat/reserved-words/blob/master/LICENSE)
-[![Email](https://img.shields.io/badge/email-studio22@mail.ru-blue.svg?style=flat-square)](mailto:studio22@mail.ru)
 
 ## About
 
