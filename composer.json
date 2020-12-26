@@ -2,7 +2,6 @@
     "name": "sspat/reserved-words",
     "description": "Validates strings against reserved words of a specific php version",
     "type": "library",
-    "version": "1.0.0",
     "keywords": [
         "reserved",
         "words",
@@ -16,7 +15,7 @@
         }
     ],
     "require": {
-        "php": ">=7.3.0",
+        "php": "^7.3|^8.0",
         "thecodingmachine/safe": "^1.3"
     },
     "require-dev": {
