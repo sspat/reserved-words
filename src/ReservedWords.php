@@ -51,11 +51,19 @@ final class ReservedWords
     }
 
     /**
-     * Checks that the word cannot be used as a namespace part or class/interface/trait name
+     * Checks that the word cannot be used as a namespace part
      */
     public function isReservedNamespaceName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'namespace', $phpVersion);
+    }
+
+    /**
+     * Checks that the word cannot be used as a class/interface/trait name
+     */
+    public function isReservedClassName(string $string, ?string $phpVersion = null): bool
+    {
+        return $this->isReservedAs($string, 'class', $phpVersion);
     }
 
     /**
