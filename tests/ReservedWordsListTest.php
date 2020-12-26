@@ -7,6 +7,7 @@ namespace sspat\ReservedWords\Tests;
 use PHPUnit\Framework\TestCase;
 use sspat\ReservedWords\ReservedWords;
 use sspat\ReservedWords\ReservedWordsList;
+
 use function array_keys;
 use function count;
 use function is_array;
@@ -16,7 +17,7 @@ use function sprintf;
 
 class ReservedWordsListTest extends TestCase
 {
-    public function testReservedWordsList() : void
+    public function testReservedWordsList(): void
     {
         $errorMessage = 'Invalid reserved word configuration for %s';
 
@@ -50,7 +51,7 @@ class ReservedWordsListTest extends TestCase
     /**
      * @param string|bool|array<int, string> $constraint
      */
-    private function isValidConstraint($constraint) : bool
+    private function isValidConstraint($constraint): bool
     {
         return $constraint === false ||
                (is_string($constraint) && preg_match(ReservedWords::PHP_VERSION_REGEXP, $constraint)) ||

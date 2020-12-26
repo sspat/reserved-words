@@ -37,7 +37,7 @@ class ReservedWords
      * This method also returns true for words that are marked as "soft" reserved in the PHP docs and may
      * become reserved in future versions of the language.
      */
-    public function isReserved(string $string) : bool
+    public function isReserved(string $string): bool
     {
         return array_key_exists(strtolower($string), $this->reservedWords);
     }
@@ -45,7 +45,7 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a constant name
      */
-    public function isReservedConstantName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedConstantName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'constant', $phpVersion);
     }
@@ -53,7 +53,7 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a namespace part or class/interface/trait name
      */
-    public function isReservedNamespaceName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedNamespaceName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'namespace', $phpVersion);
     }
@@ -61,7 +61,7 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a function name
      */
-    public function isReservedFunctionName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedFunctionName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'function', $phpVersion);
     }
@@ -69,12 +69,12 @@ class ReservedWords
     /**
      * Checks that the word cannot be used as a method name
      */
-    public function isReservedMethodName(string $string, ?string $phpVersion = null) : bool
+    public function isReservedMethodName(string $string, ?string $phpVersion = null): bool
     {
         return $this->isReservedAs($string, 'method', $phpVersion);
     }
 
-    private function isReservedAs(string $string, string $checkKey, ?string $phpVersion = null) : bool
+    private function isReservedAs(string $string, string $checkKey, ?string $phpVersion = null): bool
     {
         if (! $this->isReserved($string)) {
             return false;
@@ -101,17 +101,17 @@ class ReservedWords
         return false;
     }
 
-    private function firstVersionEqualsOrHigherThanSecond(string $firstVersion, string $secondVersion) : bool
+    private function firstVersionEqualsOrHigherThanSecond(string $firstVersion, string $secondVersion): bool
     {
         return version_compare($firstVersion, $secondVersion) >= 0;
     }
 
-    private function firstVersionLessThanSecond(string $firstVersion, string $secondVersion) : bool
+    private function firstVersionLessThanSecond(string $firstVersion, string $secondVersion): bool
     {
         return version_compare($firstVersion, $secondVersion) === -1;
     }
 
-    private function getPhpVersion(?string $phpVersion = null) : string
+    private function getPhpVersion(?string $phpVersion = null): string
     {
         if ($phpVersion === null) {
             return (string) phpversion();
