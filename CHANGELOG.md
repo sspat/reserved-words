@@ -1,4 +1,5 @@
 ### 2.0.1
+* Added support for PHP 8.1 
 * Added support for thecodingmachine/safe v2
 
 ### 2.0.0
