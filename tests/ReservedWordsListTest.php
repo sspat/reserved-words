@@ -59,6 +59,8 @@ final class ReservedWordsListTest extends TestCase
 
     /**
      * @param string|bool|array<int, string> $constraint
+     *
+     * @phpcs:disable SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingNativeTypeHint
      */
     private function isValidConstraint($constraint): bool
     {

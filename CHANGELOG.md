@@ -1,4 +1,8 @@
-### 2.0.0 (26.12.2020)
+### 3.0.0
+* Added support for PHP 8.1 
+* Added support for thecodingmachine/safe v2
+
+### 2.0.0
 
 * Added support for PHP 8.0
 * BC Break: Dropped support of PHP 7.2

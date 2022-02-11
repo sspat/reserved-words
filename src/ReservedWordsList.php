@@ -645,5 +645,12 @@ final class ReservedWordsList
             'function' => false,
             'method' => false,
         ],
+        'readonly' => [
+            'constant' => false,
+            'namespace' => false,
+            'class' => '8.1',
+            'function' => false,
+            'method' => false,
+        ],
     ];
 }
