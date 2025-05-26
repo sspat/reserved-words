@@ -13,6 +13,7 @@ use function Safe\preg_match;
 use function strtolower;
 use function version_compare;
 
+/** @psalm-suppress UnusedClass */
 final class ReservedWords
 {
     public const PHP_VERSION_REGEXP = '/^\d\.\d\.?\d*$/';
@@ -23,9 +24,7 @@ final class ReservedWords
      */
     private $reservedWords;
 
-    /**
-     * @param array<string, array<string, string|bool|array<array-key, string>>> $reservedWords
-     */
+    /** @param array<string, array<string, string|bool|array<array-key, string>>> $reservedWords */
     public function __construct(array $reservedWords = ReservedWordsList::PHP_RESERVED_WORDS)
     {
         $this->reservedWords = $reservedWords;

@@ -11,9 +11,7 @@ use sspat\ReservedWords\ReservedWordsLookupError;
 
 use function strtoupper;
 
-/**
- * @covers \sspat\ReservedWords\ReservedWords
- */
+/** @covers \sspat\ReservedWords\ReservedWords */
 final class ReservedWordsTest extends TestCase
 {
     public function testDefaultReservedWordsLoaded(): void
@@ -56,14 +54,14 @@ final class ReservedWordsTest extends TestCase
     }
 
     /**
-     * @param array<string, string|bool|array<array-key, string>> $reservedWordParameters
+     * @param array<string, string|bool|array<string, string>> $reservedWordParameters
      *
      * @dataProvider reservedWordsList
      */
     public function testConstantName(
         string $reservedWord,
         array $reservedWordParameters,
-        string $phpVersion,
+        ?string $phpVersion,
         bool $isReserved
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
@@ -72,14 +70,14 @@ final class ReservedWordsTest extends TestCase
     }
 
     /**
-     * @param array<string, string|bool|array<array-key, string>> $reservedWordParameters
+     * @param array<string, string|array<string, string>> $reservedWordParameters
      *
      * @dataProvider reservedWordsList
      */
     public function testNamespaceName(
         string $reservedWord,
         array $reservedWordParameters,
-        string $phpVersion,
+        ?string $phpVersion,
         bool $isReserved
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
@@ -88,14 +86,14 @@ final class ReservedWordsTest extends TestCase
     }
 
     /**
-     * @param array<string, string|bool|array<array-key, string>> $reservedWordParameters
+     * @param array<string, string|bool|array<string, string>> $reservedWordParameters
      *
      * @dataProvider reservedWordsList
      */
     public function testClassName(
         string $reservedWord,
         array $reservedWordParameters,
-        string $phpVersion,
+        ?string $phpVersion,
         bool $isReserved
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
@@ -104,14 +102,14 @@ final class ReservedWordsTest extends TestCase
     }
 
     /**
-     * @param array<string, string|bool|array<array-key, string>> $reservedWordParameters
+     * @param array<string, string|bool|array<string, string>> $reservedWordParameters
      *
      * @dataProvider reservedWordsList
      */
     public function testFunctionName(
         string $reservedWord,
         array $reservedWordParameters,
-        string $phpVersion,
+        ?string $phpVersion,
         bool $isReserved
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
@@ -120,14 +118,14 @@ final class ReservedWordsTest extends TestCase
     }
 
     /**
-     * @param array<string, string|bool|array<array-key, string>> $reservedWordParameters
+     * @param array<string, string|bool|array<string, string>> $reservedWordParameters
      *
      * @dataProvider reservedWordsList
      */
     public function testMethodName(
         string $reservedWord,
         array $reservedWordParameters,
-        string $phpVersion,
+        ?string $phpVersion,
         bool $isReserved
     ): void {
         $reservedWords = new ReservedWords([$reservedWord => $reservedWordParameters]);
@@ -141,14 +139,12 @@ final class ReservedWordsTest extends TestCase
         $reservedWords = new ReservedWords([$reservedWord => []]);
 
         $this->expectException(ReservedWordsLookupError::class);
-        $this->expectErrorMessage('Invalid PHP version: 7, the correct format is: /^\d\.\d\.?\d*$/');
+        $this->expectExceptionMessage('Invalid PHP version: 7, the correct format is: /^\d\.\d\.?\d*$/');
         $reservedWords->isReservedMethodName($reservedWord, '7');
     }
 
-    /**
-     * @return array<array-key, array<string, string|bool|array<string, string|bool|array<array-key, string>>>>
-     */
-    public function reservedWordsList(): array
+    /** @return array<array-key, array<string, string|bool|array<string, string|bool|list<string>>|null>> */
+    public static function reservedWordsList(): array
     {
         return [
             [
@@ -269,6 +265,18 @@ final class ReservedWordsTest extends TestCase
                     'method' => ['5.0', '7.0'],
                 ],
                 'phpVersion' => '7.1',
+                'isReserved' => false,
+            ],
+            [
+                'reservedWord' => 'reserved-word',
+                'reservedWordParameters' => [
+                    'constant' => ['5.0', '7.0'],
+                    'namespace' => ['5.0', '7.0'],
+                    'class' => ['5.0', '7.0'],
+                    'function' => ['5.0', '7.0'],
+                    'method' => ['5.0', '7.0'],
+                ],
+                'phpVersion' => null,
                 'isReserved' => false,
             ],
         ];

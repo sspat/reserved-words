@@ -652,5 +652,12 @@ final class ReservedWordsList
             'function' => false,
             'method' => false,
         ],
+        'never' => [
+            'constant' => false,
+            'namespace' => '8.1',
+            'class' => '8.1',
+            'function' => false,
+            'method' => false,
+        ],
     ];
 }
