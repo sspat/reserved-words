@@ -1,3 +1,8 @@
+### 3.0.1
+* Added support for PHP 8.2, 8.3, 8.4
+* Fixed missing 'never' keyword for PHP 8.1+
+* Removed dependency thecodingmachine/safe
+
 ### 3.0.0
 * Added support for PHP 8.1 
 * Added support for thecodingmachine/safe v2

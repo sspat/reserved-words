@@ -7,9 +7,7 @@ namespace sspat\ReservedWords\Tests;
 use PHPUnit\Framework\TestCase;
 use sspat\ReservedWords\ReservedWordsLookupError;
 
-/**
- * @covers \sspat\ReservedWords\ReservedWordsLookupError
- */
+/** @covers \sspat\ReservedWords\ReservedWordsLookupError */
 final class ReservedWordsLookupErrorTest extends TestCase
 {
     public function testInvalidPhpVersion(): void

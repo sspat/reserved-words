@@ -21,6 +21,9 @@ jobs:
           - "7.4"
           - "8.0"
           - "8.1"
+          - "8.2"
+          - "8.3"
+          - "8.4"
         dependencies:
           - "lowest"
           - "highest"
@@ -53,7 +56,7 @@ jobs:
         operating-system:
           - "ubuntu-latest"
         php-version:
-          - "8.1"
+          - "8.4"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
@@ -79,7 +82,7 @@ jobs:
         operating-system:
           - "ubuntu-latest"
         php-version:
-          - "8.1"
+          - "8.4"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
@@ -105,7 +108,7 @@ jobs:
         operating-system:
           - "ubuntu-latest"
         php-version:
-          - "8.1"
+          - "8.4"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
@@ -131,7 +134,7 @@ jobs:
         operating-system:
           - "ubuntu-latest"
         php-version:
-          - "8.1"
+          - "8.4"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"
@@ -160,7 +163,7 @@ jobs:
         operating-system:
           - "ubuntu-latest"
         php-version:
-          - "8.1"
+          - "8.4"
     steps:
       - name: "Checkout"
         uses: "actions/checkout@v2"

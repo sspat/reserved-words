@@ -13,12 +13,10 @@ use function array_keys;
 use function count;
 use function is_array;
 use function is_string;
-use function Safe\preg_match;
-use function Safe\sprintf;
+use function preg_match;
+use function sprintf;
 
-/**
- * @covers \sspat\ReservedWords\ReservedWordsList
- */
+/** @covers \sspat\ReservedWords\ReservedWordsList */
 final class ReservedWordsListTest extends TestCase
 {
     public function testReservedWordsList(): void
@@ -36,23 +34,23 @@ final class ReservedWordsListTest extends TestCase
             Assert::assertArrayHasKey('method', $reservedWordConfig);
             Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['constant']),
-                sprintf($errorMessage, $reservedWord)
+                sprintf($errorMessage, $reservedWord),
             );
             Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['namespace']),
-                sprintf($errorMessage, $reservedWord)
+                sprintf($errorMessage, $reservedWord),
             );
             Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['class']),
-                sprintf($errorMessage, $reservedWord)
+                sprintf($errorMessage, $reservedWord),
             );
             Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['function']),
-                sprintf($errorMessage, $reservedWord)
+                sprintf($errorMessage, $reservedWord),
             );
             Assert::assertTrue(
                 $this->isValidConstraint($reservedWordConfig['method']),
-                sprintf($errorMessage, $reservedWord)
+                sprintf($errorMessage, $reservedWord),
             );
         }
     }

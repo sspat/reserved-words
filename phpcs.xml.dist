@@ -18,5 +18,8 @@
 
     <rule ref="Doctrine">
         <exclude name="SlevomatCodingStandard.PHP.RequireExplicitAssertion.RequiredExplicitAssertion" />
+        <exclude name="SlevomatCodingStandard.TypeHints.ClassConstantTypeHint.MissingNativeTypeHint" />
+        <exclude name="SlevomatCodingStandard.TypeHints.DNFTypeHintFormat.DisallowedShortNullable" />
+        <exclude name="SlevomatCodingStandard.Functions.RequireTrailingCommaInDeclaration.MissingTrailingComma" />
     </rule>
 </ruleset>
