@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace sspat\ReservedWords\Tests;
 
 use PHPUnit\Framework\Assert;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use sspat\ReservedWords\ReservedWords;
 use sspat\ReservedWords\ReservedWordsLookupError;
@@ -54,8 +53,11 @@ final class ReservedWordsTest extends TestCase
         Assert::assertTrue($reservedWords->isReservedMethodName(strtoupper($reservedWord), '7.0'));
     }
 
-    /** @param array<string, string|bool|array<string, string>> $reservedWordParameters */
-    #[DataProvider('reservedWordsList')]
+    /**
+     * @param array<string, string|bool|array<string, string>> $reservedWordParameters
+     *
+     * @dataProvider reservedWordsList
+     */
     public function testConstantName(
         string $reservedWord,
         array $reservedWordParameters,
@@ -67,8 +69,11 @@ final class ReservedWordsTest extends TestCase
         Assert::assertEquals($isReserved, $reservedWords->isReservedConstantName($reservedWord, $phpVersion));
     }
 
-    /** @param array<string, string|array<string, string>> $reservedWordParameters */
-    #[DataProvider('reservedWordsList')]
+    /**
+     * @param array<string, string|array<string, string>> $reservedWordParameters
+     *
+     * @dataProvider reservedWordsList
+     */
     public function testNamespaceName(
         string $reservedWord,
         array $reservedWordParameters,
@@ -80,8 +85,11 @@ final class ReservedWordsTest extends TestCase
         Assert::assertEquals($isReserved, $reservedWords->isReservedNamespaceName($reservedWord, $phpVersion));
     }
 
-    /** @param array<string, string|bool|array<string, string>> $reservedWordParameters */
-    #[DataProvider('reservedWordsList')]
+    /**
+     * @param array<string, string|bool|array<string, string>> $reservedWordParameters
+     *
+     * @dataProvider reservedWordsList
+     */
     public function testClassName(
         string $reservedWord,
         array $reservedWordParameters,
@@ -93,8 +101,11 @@ final class ReservedWordsTest extends TestCase
         Assert::assertEquals($isReserved, $reservedWords->isReservedClassName($reservedWord, $phpVersion));
     }
 
-    /** @param array<string, string|bool|array<string, string>> $reservedWordParameters */
-    #[DataProvider('reservedWordsList')]
+    /**
+     * @param array<string, string|bool|array<string, string>> $reservedWordParameters
+     *
+     * @dataProvider reservedWordsList
+     */
     public function testFunctionName(
         string $reservedWord,
         array $reservedWordParameters,
@@ -106,8 +117,11 @@ final class ReservedWordsTest extends TestCase
         Assert::assertEquals($isReserved, $reservedWords->isReservedFunctionName($reservedWord, $phpVersion));
     }
 
-    /** @param array<string, string|bool|array<string, string>> $reservedWordParameters */
-    #[DataProvider('reservedWordsList')]
+    /**
+     * @param array<string, string|bool|array<string, string>> $reservedWordParameters
+     *
+     * @dataProvider reservedWordsList
+     */
     public function testMethodName(
         string $reservedWord,
         array $reservedWordParameters,
