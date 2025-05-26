@@ -19,7 +19,7 @@
     },
     "require-dev": {
         "doctrine/coding-standard": "^12",
-        "infection/infection": "^0.29.14",
+        "infection/infection": "^0.18|^0.29.14",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
